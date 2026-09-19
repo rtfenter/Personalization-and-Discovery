@@ -315,6 +315,88 @@ The PM doesn't need to implement the model to own these product decisions.
 
 But the PM does need to understand what the model is optimizing, what evidence it learns from, and how model behavior affects the user experience.
 
+### A Model Can Improve While the Product Gets Worse
+
+Suppose a creator-discovery ranking model improves on its primary offline relevance metric.
+
+After launch:
+
+- overall feed engagement increases 9%
+- average session length increases 12%
+- follows of previously unknown creators decrease 18%
+- users increasingly consume creators they've already engaged with
+- retention and explicit negative feedback remain roughly unchanged
+
+The model may be getting better at what it was asked to predict.
+
+That doesn't mean the product is getting better at everything the experience is supposed to do.
+
+In this case, historical engagement is highly predictive of future engagement. Optimizing relevance can therefore reinforce known preferences while reducing opportunities for discovery.
+
+The product question becomes:
+
+> **Can we preserve relevance while increasing successful discovery?**
+
+### Define the outcome before changing the model
+
+The PM doesn't need to prescribe how the ML team should change the ranking system.
+
+The PM does need to define what successful discovery means.
+
+For this experiment:
+
+**Primary**
+
+- **Repeat engagement with a newly discovered creator within 14 days** — discovery is more meaningful when the user returns to the creator rather than consuming one item once.
+
+**Supporting**
+
+- Meaningful consumption of previously unknown creators
+- Follows of previously unknown creators
+- Session length
+
+**Guardrails**
+
+- Overall engagement
+- Explicit negative-feedback rate
+
+**Longer-term outcome**
+
+- 30-day retention
+
+The ML team can then evaluate approaches such as changes to candidate generation, ranking, or exploration strategy against a product outcome rather than optimizing diversity for its own sake.
+
+### Interpreting the tradeoff
+
+Suppose the experiment produces:
+
+| Metric | Control | Treatment |
+| --- | ---: | ---: |
+| Repeat engagement with newly discovered creators | 12% | 17% |
+| Meaningful consumption of unknown creators | Baseline | +22% |
+| Follows of unknown creators | Baseline | +15% |
+| Overall engagement | Baseline | -3% |
+| Negative feedback | Baseline | +1 pp |
+| 30-day retention | 41% | 42% |
+
+The primary outcome improved substantially.
+
+But relevance-related guardrails weakened.
+
+That doesn't automatically mean the treatment failed. Some reduction in immediate engagement may be an acceptable tradeoff when the product deliberately creates more room for unfamiliar content.
+
+Before a broad rollout, I'd want to understand **where the tradeoff occurred**.
+
+Did most established users give up a small amount of immediate engagement in exchange for better discovery?
+
+Or did particular cohorts experience a much larger relevance decline?
+
+The next question becomes whether the system can preserve the improvement in durable creator discovery while recovering some of the relevance loss.
+
+The PM's job isn't to choose the model architecture.
+
+It's to make the tradeoff explicit, define what success means, and determine whether model improvements are producing a better product outcome.
+
 ---
 
 ## Where AI Adds Value
@@ -370,7 +452,7 @@ Start with minimal explicit input and watch early behavior turn a cold-start pro
 Introduce current intent, refining interests, negative feedback, and continued discovery while preserving durable affinities.
 
 **03 / Rules, ML & AI**  
-Work through product decisions and identify when deterministic logic, ML prediction, semantic AI, or a combination is appropriate.
+Decide when deterministic logic, ML prediction, semantic AI, or a combination is appropriate, then work through an ML experiment where improved relevance conflicts with creator discovery.
 
 Throughout the experience, the same three layers remain visible:
 

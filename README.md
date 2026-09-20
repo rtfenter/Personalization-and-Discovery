@@ -18,9 +18,9 @@ The distinction matters because **evidence is fact; inference is a hypothesis; r
 
 ---
 
-## 01 / Profile Formation
+## 01 / Profile formation
 
-### How Do You Personalize Before You Know Someone?
+### How do you personalize before you know someone?
 
 A new user creates a cold-start problem: personalization has no behavioral history to learn from.
 
@@ -93,9 +93,9 @@ It's to create a useful starting point that can keep learning.
 
 ---
 
-## 02 / Profile Evolution
+## 02 / Profile evolution
 
-### How Should Personalization Change Without Losing the Person?
+### How should personalization change without losing the person?
 
 Over time, the product has substantially more evidence.
 
@@ -213,9 +213,9 @@ It's an experience that can change with the user without continually redefining 
 
 ---
 
-## 03 / ML & AI Product Decisions
+## 03 / ML & AI product decisions
 
-### When a Better Model Doesn't Mean a Better Product
+### When a better model doesn't mean a better product
 
 Suppose a creator-discovery ranking model improves on its primary offline relevance metric.
 
@@ -383,7 +383,7 @@ Product policy and composition can therefore work alongside ML ranking.
 
 ---
 
-## Where AI Adds Value
+## Where AI adds value
 
 Machine-learning ranking and generative or semantic AI solve different problems.
 
@@ -450,7 +450,7 @@ The prototype uses deterministic simulation to make the product decisions visibl
 
 ---
 
-## What This Study Is Testing
+## What this study is testing
 
 Across all three cases, the core hypothesis is:
 

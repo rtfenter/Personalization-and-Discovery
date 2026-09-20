@@ -213,109 +213,9 @@ It's an experience that can change with the user without continually redefining 
 
 ---
 
-## 03 / Rules, ML & AI
+## 03 / ML & AI Product Decisions
 
-### When Does Personalization Need More Than Deterministic Logic?
-
-The first two cases describe product behavior.
-
-At small scale, much of that behavior can be simulated with deterministic rules.
-
-At the scale of products with millions of users, creators, and content items, manually defining every relationship becomes impossible.
-
-The product question becomes:
-
-> **Which decisions should remain deterministic, which benefit from machine learning, and where does AI add something the existing system cannot?**
-
-### Deterministic product logic
-
-Some outcomes should remain predictable because the user's intent or the product constraint is already known.
-
-Examples:
-
-| Problem | Approach | Why |
-| --- | --- | --- |
-| User blocks a creator | Deterministic | Explicit user control should be honored predictably |
-| User selects Not Interested in country music | Deterministic policy | The user supplied the preference directly |
-| Content is ineligible or unsafe | Deterministic constraint | Eligibility shouldn't depend on predicted relevance |
-| A recommendation violates a hard product rule | Deterministic constraint | Prediction doesn't override product boundaries |
-
-These decisions don't need a model to guess what should happen.
-
-### Where ML becomes useful
-
-Machine learning becomes valuable when the product needs to learn patterns across more users, content, contexts, and behaviors than a team could reasonably encode as rules.
-
-Examples include:
-
-- retrieving plausible candidates from a very large catalog
-- predicting relative relevance
-- learning affinity patterns from behavioral history
-- identifying similarities from large-scale interaction data
-- adapting predictions to context and changing behavior
-
-A ranking model might estimate:
-
-> **Given what we know about this user, this content, and this context, which candidates are most likely to be relevant now?**
-
-That prediction is useful.
-
-It still isn't the entire product decision.
-
-### ML + product policy
-
-Suppose recent behavior causes strength-training content to receive very high predicted relevance.
-
-The model may be working correctly at the item level.
-
-The resulting experience can still be wrong if strength content overwhelms every durable interest.
-
-Product policy and composition can therefore work alongside ML ranking.
-
-**Candidate generation → ML ranking → Product policy / composition → Experience**
-
-Deterministic rules and learned systems don't have to compete.
-
-They solve different problems.
-
-### What changes for the PM
-
-Working with a probabilistic system changes the questions product needs to answer.
-
-**Prediction target**  
-What are we actually asking the model to predict?
-
-A click? A save? A follow? Completion? Long-term satisfaction?
-
-**Signals**  
-Which behaviors should inform the prediction, and what ambiguity do they carry?
-
-**Ground truth**  
-What outcome tells us the recommendation was actually good?
-
-**Offline evaluation**  
-Does the model perform better against historical or held-out data?
-
-**Online evaluation**  
-Does that improvement translate into a better live product experience?
-
-**Feedback loops**  
-Are recommendations creating the behavior that later convinces the system to recommend even more of the same thing?
-
-**Exploration**  
-How can the system learn about interests it hasn't given the user an opportunity to demonstrate yet?
-
-**Cold start**  
-What happens when the user or content item has little behavioral history?
-
-**Guardrails**  
-What should optimization never be allowed to overwhelm?
-
-The PM doesn't need to implement the model to own these product decisions.
-
-But the PM does need to understand what the model is optimizing, what evidence it learns from, and how model behavior affects the user experience.
-
-### A Model Can Improve While the Product Gets Worse
+### When a Better Model Doesn't Mean a Better Product
 
 Suppose a creator-discovery ranking model improves on its primary offline relevance metric.
 
@@ -397,6 +297,90 @@ The PM's job isn't to choose the model architecture.
 
 It's to make the tradeoff explicit, define what success means, and determine whether model improvements are producing a better product outcome.
 
+### What changes for the PM
+
+Working with a probabilistic system changes the questions product needs to answer.
+
+**Prediction target**  
+What are we actually asking the model to predict?
+
+A click? A save? A follow? Completion? Long-term satisfaction?
+
+**Signals**  
+Which behaviors should inform the prediction, and what ambiguity do they carry?
+
+**Ground truth**  
+What outcome tells us the recommendation was actually good?
+
+**Offline evaluation**  
+Does the model perform better against historical or held-out data?
+
+**Online evaluation**  
+Does that improvement translate into a better live product experience?
+
+**Feedback loops**  
+Are recommendations creating the behavior that later convinces the system to recommend even more of the same thing?
+
+**Exploration**  
+How can the system learn about interests it hasn't given the user an opportunity to demonstrate yet?
+
+**Cold start**  
+What happens when the user or content item has little behavioral history?
+
+**Guardrails**  
+What should optimization never be allowed to overwhelm?
+
+The PM doesn't need to implement the model to own these product decisions.
+
+But the PM does need to understand what the model is optimizing, what evidence it learns from, and how model behavior affects the user experience.
+
+### Choose the right mechanism
+
+Some outcomes should remain predictable because the user's intent or the product constraint is already known. Other problems benefit from learned systems.
+
+| Problem | Approach | Why |
+| --- | --- | --- |
+| User blocks a creator | Deterministic | Explicit user control should be honored predictably |
+| Rank a very large set of plausible creators and content | ML | Learning relevance across large numbers of users, items, behaviors, and contexts is impractical to encode manually |
+| Interpret "women talking about starting companies after leaving tech" | Semantic AI | The intent spans concepts that may not map cleanly to one predefined taxonomy label |
+| Balance current strength-training intent with durable affinities | ML + product policy | Prediction can estimate relevance while product strategy shapes the overall experience |
+
+Deterministic rules and learned systems don't have to compete.
+
+They solve different problems.
+
+### Where ML becomes useful
+
+Machine learning becomes valuable when the product needs to learn patterns across more users, content, contexts, and behaviors than a team could reasonably encode as rules.
+
+Examples include:
+
+- retrieving plausible candidates from a very large catalog
+- predicting relative relevance
+- learning affinity patterns from behavioral history
+- identifying similarities from large-scale interaction data
+- adapting predictions to context and changing behavior
+
+A ranking model might estimate:
+
+> **Given what we know about this user, this content, and this context, which candidates are most likely to be relevant now?**
+
+That prediction is useful.
+
+It still isn't the entire product decision.
+
+### ML + product policy
+
+Suppose recent behavior causes strength-training content to receive very high predicted relevance.
+
+The model may be working correctly at the item level.
+
+The resulting experience can still be wrong if strength content overwhelms every durable interest.
+
+Product policy and composition can therefore work alongside ML ranking.
+
+**Candidate generation → ML ranking → Product policy / composition → Experience**
+
 ---
 
 ## Where AI Adds Value
@@ -441,9 +425,9 @@ Don't add AI merely because the product contains recommendations.
 
 ## Try the Personalization Lab
 
-*Interactive study coming next.*
+→ [Launch the interactive study](https://rtfenter.github.io/Personalization-Discovery-Lab/)
 
-The lab will follow one user through all three chapters:
+The lab follows one user through all three chapters:
 
 **01 / Profile Formation**  
 Start with minimal explicit input and watch early behavior turn a cold-start profile into a richer hypothesis.
@@ -451,7 +435,7 @@ Start with minimal explicit input and watch early behavior turn a cold-start pro
 **02 / Profile Evolution**  
 Introduce current intent, refining interests, negative feedback, and continued discovery while preserving durable affinities.
 
-**03 / Rules, ML & AI**  
+**03 / ML & AI Product Decisions**  
 Decide when deterministic logic, ML prediction, semantic AI, or a combination is appropriate, then work through an ML experiment where improved relevance conflicts with creator discovery.
 
 Throughout the experience, the same three layers remain visible:
